@@ -1,21 +1,35 @@
 use std::io;
 
-fn check_for_winner(arr: &[String; 3]) -> u32 {
-    let mut winner: u32 = 0;
-    if arr[0] == "x" && arr[1] == "x" && arr[2] == "x" {
-        winner = 1;
-    } 
-    else if arr[0] == "o" && arr[1] == "o" && arr[2] == "o" {
-        winner = 1;
-    }
-    else {
-        winner = 0;
+struct Player {
+    marker: String,
+    turn: u32,
+}
+
+impl Player {
+    fn new(new_marker: &str, new_turn: u32) -> Player {
+        Player {marker: new_marker.to_string(), turn: new_turn}
     }
 
-    winner
+    fn check_for_winner(arr: &[String; 3]) -> bool {
+        let mut winner: bool = false;
+        if arr[0] == "x" && arr[1] == "x" && arr[2] == "x" {
+            winner = true;
+        } 
+        else if arr[0] == "o" && arr[1] == "o" && arr[2] == "o" {
+            winner = true;
+        }
+        else {
+            winner = false;
+        }
+
+        winner
+    }
 }
 
 fn main() {
+
+    let player1 = Player::new("x", 1);
+    let player2 = Player::new("o", 2);
     
     println!("Let's play tic-tac-toe!");
 
@@ -24,18 +38,33 @@ fn main() {
     let mut rowThree: [String;3] = ["#".to_string(), "#".to_string(), "#".to_string()];
 
     let mut turn: u32 = 1;
-    let mut marker = String::from("x");
+    let mut marker: String;
+
+    let first: String;
+    let second: String;
+
+    if player1.turn % 2 == 0 {
+        first = String::from("Player2");
+        second = String::from("Player1");
+    } else {
+        first = String::from("Player1");
+        second = String::from("Player2");
+     }
 
     loop {
 
         if turn % 2 == 0 {
-            marker = "o".to_string();
+            marker = player2.marker.to_string();
         } else {
-            marker = "x".to_string();
+            marker = player1.marker.to_string();
         }
 
-        if check_for_winner(&rowOne) == 1 || check_for_winner(&rowTwo) == 1 || check_for_winner(&rowThree) == 1 {
-            println!("You win!");
+        if Player::check_for_winner(&rowOne) == true || Player::check_for_winner(&rowTwo) == true || Player::check_for_winner(&rowThree) == true {
+            if turn % 2 == 0 {
+                println!("{} wins!", first);
+            } else {
+                println!("{} wins!", second);
+            }
             println!("{:?}", rowOne);
             println!("{:?}", rowTwo);
             println!("{:?}", rowThree);
