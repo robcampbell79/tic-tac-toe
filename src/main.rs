@@ -16,6 +16,8 @@ fn main() {
     let mut turn: u32 = 1;
     let mut marker: String;
     let mut index_num: usize;
+    let mut play_again = String::new();
+    let mut games_played: u32 = 0;
 
     let first: String;
     let second: String;
@@ -30,7 +32,7 @@ fn main() {
 
     loop {
 
-        if Player::check_for_winner(&board.a) == true || Player::check_for_winner(&board.b) == true || Player::check_for_winner(&board.c) == true {
+        if Player::check_for_winner(&board.a, &board.b, &board.c) == true { //|| Player::check_for_winner(&board.b) == true || Player::check_for_winner(&board.c) == true {
             if turn % 2 == 0 {
                 println!("{} wins!", first);
             } else {
@@ -39,7 +41,17 @@ fn main() {
 
             board.show_board();
 
-            break;
+            println!("Do you want to play again?");
+
+            io::stdin().read_line(&mut play_again).expect("Invalid move");
+
+            if play_again.trim() == "y" {
+               let mut board = Board::new();
+            } else {
+                break;
+            }
+
+            //break;
         }
 
         println!("Where do you want to move?");
