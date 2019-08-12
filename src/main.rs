@@ -26,19 +26,128 @@ impl Player {
     }
 }
 
+struct Board {
+    a: [String;3],
+    b: [String;3],
+    c: [String;3],
+}
+
+impl Board {
+    fn new() -> Board {
+        Board {
+            a: ["#".to_string(), "#".to_string(), "#".to_string()],
+            b: ["#".to_string(), "#".to_string(), "#".to_string()],
+            c: ["#".to_string(), "#".to_string(), "#".to_string()],
+        }
+    }
+
+    fn show_board(&self) {
+        println!("{:?}", self.a);
+        println!("{:?}", self.b);
+        println!("{:?}", self.c);
+    }
+
+}
+
+fn player_move(board: &mut Board, make_move: String, player: &Player) -> bool {
+    let mut row_name = make_move[0..1].trim();
+    let mut row_num = make_move[1..2].trim();
+    let mut marker = &player.marker;
+    let mut turn = false;
+
+    if row_name == "a" {
+        match row_num {
+            "1" => if board.a[0] == "x" || board.a[0] == "o" {
+                        println!("Try again, not empty");
+                        turn = false;
+                    } else {
+                        board.a[0] = marker.to_string();
+                        turn = true;
+                    },
+            "2" => if board.a[1] == "x" || board.a[1] == "o" {
+                        println!("Try again, not empty");
+                        turn = false;
+                    } else {
+                        board.a[1] = marker.to_string();
+                        turn = true;
+                    },
+            "3" => if board.a[2] == "x" || board.a[2] == "o" {
+                        println!("Try again, not empty");
+                        turn = false;
+                    } else {
+                        board.a[2] = marker.to_string();
+                        turn = true;
+                    },
+            (_) => println!("Invalid number."),
+        }
+    }
+    else if row_name == "b" {
+        match row_num {
+            "1" => if board.b[0] == "x" || board.b[0] == "o" {
+                        println!("Try again, not empty");
+                        turn = false;
+                    } else {
+                        board.b[0] = marker.to_string();
+                        turn = true;
+                    },
+            "2" => if board.b[1] == "x" || board.b[1] == "o" {
+                        println!("Try again, not empty");
+                        turn = false;
+                    } else {
+                        board.b[1] = marker.to_string();
+                        turn = true;
+                    },
+            "3" => if board.b[2] == "x" || board.b[2] == "o" {
+                        println!("Try again, not empty");
+                        turn = false;
+                    } else {
+                        board.b[2] = marker.to_string();
+                        turn = true;
+                    },
+            (_) => println!("Invalid number."),
+        }
+    }
+    else {
+        match row_num {
+            "1" => if board.c[0] == "x" || board.c[0] == "o" {
+                        println!("Try again, not empty");
+                        turn = false;
+                    } else {
+                        board.c[0] = marker.to_string();
+                        turn = true;
+                    },
+            "2" => if board.c[1] == "x" || board.c[1] == "o" {
+                        println!("Try again, not empty");
+                        turn = false;
+                    } else {
+                        board.c[1] = marker.to_string();
+                        turn = true;
+                    },
+            "3" => if board.c[2] == "x" || board.c[2] == "o" {
+                        println!("Try again, not empty");
+                        turn = false;
+                    } else {
+                        board.c[2] = marker.to_string();
+                        turn = true;
+                    },
+            (_) => println!("Invalid number."),
+        }
+    }
+
+    turn
+}
+
 fn main() {
 
     let player1 = Player::new("x", 1);
     let player2 = Player::new("o", 2);
+    let mut board = Board::new();
     
     println!("Let's play tic-tac-toe!");
 
-    let mut rowOne: [String;3] = ["#".to_string(), "#".to_string(), "#".to_string()];
-    let mut rowTwo: [String;3] = ["#".to_string(), "#".to_string(), "#".to_string()];
-    let mut rowThree: [String;3] = ["#".to_string(), "#".to_string(), "#".to_string()];
-
     let mut turn: u32 = 1;
     let mut marker: String;
+    let mut index_num: usize;
 
     let first: String;
     let second: String;
@@ -53,111 +162,35 @@ fn main() {
 
     loop {
 
-        if turn % 2 == 0 {
-            marker = player2.marker.to_string();
-        } else {
-            marker = player1.marker.to_string();
-        }
-
-        if Player::check_for_winner(&rowOne) == true || Player::check_for_winner(&rowTwo) == true || Player::check_for_winner(&rowThree) == true {
+        if Player::check_for_winner(&board.a) == true || Player::check_for_winner(&board.b) == true || Player::check_for_winner(&board.c) == true {
             if turn % 2 == 0 {
                 println!("{} wins!", first);
             } else {
                 println!("{} wins!", second);
             }
-            println!("{:?}", rowOne);
-            println!("{:?}", rowTwo);
-            println!("{:?}", rowThree);
+
+            board.show_board();
+
             break;
         }
 
         println!("Where do you want to move?");
 
-        println!("{:?}", rowOne);
-        println!("{:?}", rowTwo);
-        println!("{:?}", rowThree);
+        board.show_board();
 
         let mut make_move = String::new();
 
         io::stdin().read_line(&mut make_move).expect("Invalid move");
 
-        if make_move.trim() == "a1" {
-            if rowOne[0] == "x" || rowOne[0] == "o" {
-                println!("Try again, not empty");
-                turn -= 1;
-            } else {
-                rowOne[0] = marker;
-            }
-        }
-        else if make_move.trim() == "a2" {
-            if rowOne[1] == "x" || rowOne[1] == "o" {
-                println!("Try again, not empty");
-                turn -= 1;
-            } else {
-                rowOne[1] = marker;
-            }
-        }
-        else if make_move.trim() == "a3" {
-            if rowOne[2] == "x" || rowOne[2] == "o" {
-                println!("Try again, not empty");
-                turn -= 1;
-            } else {
-                rowOne[2] = marker;
-            }
-        }
-        else if make_move.trim() == "b1" {
-            if rowTwo[0] == "x" || rowTwo[0] == "o" {
-                println!("Try again, not empty");
-                turn -= 1;
-            } else {
-                rowTwo[0] = marker;
-            }
-        }
-        else if make_move.trim() == "b2" {
-            if rowTwo[1] == "x" || rowTwo[1] == "o" {
-                println!("Try again, not empty");
-                turn -= 1;
-            } else {
-                rowTwo[1] = marker;
-            }
-        }
-        else if make_move.trim() == "b3" {
-            if rowTwo[2] == "x" || rowTwo[2] == "o" {
-                println!("Try again, not empty");
-                turn -= 1;
-            } else {
-                rowTwo[2] = marker;
-            }
-        }
-        else if make_move.trim() == "c1" {
-            if rowThree[0] == "x" || rowThree[0] == "o" {
-                println!("Try again, not empty");
-                turn -= 1;
-            } else {
-                rowThree[0] = marker;
-            }
-        }
-        else if make_move.trim() == "c2" {
-            if rowThree[1] == "x" || rowThree[1] == "o" {
-                println!("Try again, not empty");
-                turn -= 1;
-            } else {
-                rowThree[1] = marker;
-            }
-        }
-        else if make_move.trim() == "c3" {
-            if rowThree[2] == "x" || rowThree[2] == "o" {
-                println!("Try again, not empty");
-                turn -= 1;
-            } else {
-                rowThree[2] = marker;
-            }
-        }
-        else {
-            println!("Under Construction");
-            break;
-        }
+        if turn % 2 == 0 {
+            if player_move(&mut board, make_move, &player2) == true {
+                turn += 1;
+            } 
 
-        turn += 1;
+        } else {
+            if player_move(&mut board, make_move, &player1) == true {
+                turn += 1;
+            } 
+        }
     }
 }
