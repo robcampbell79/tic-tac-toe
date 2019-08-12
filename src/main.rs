@@ -31,7 +31,7 @@ fn main() {
 
     loop {
 
-        if Player::check_for_winner(&board.a, &board.b, &board.c) == true { //|| Player::check_for_winner(&board.b) == true || Player::check_for_winner(&board.c) == true {
+        if Player::check_for_winner(&board.a, &board.b, &board.c) == true {
             if turn % 2 == 0 {
                 println!("{} wins!", first);
             } else {
@@ -46,7 +46,6 @@ fn main() {
 
             io::stdin().read_line(&mut play_again).expect("Invalid move");
 
-            //break;
             if play_again.trim() == "y" {
                 board = Board::new();
                 turn = 1;
