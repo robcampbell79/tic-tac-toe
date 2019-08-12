@@ -16,7 +16,6 @@ fn main() {
     let mut turn: u32 = 1;
     let mut marker: String;
     let mut index_num: usize;
-    let mut play_again = String::new();
     let mut games_played: u32 = 0;
 
     let first: String;
@@ -43,12 +42,14 @@ fn main() {
 
             println!("Do you want to play again?");
 
+            let mut play_again = String::new();
+
             io::stdin().read_line(&mut play_again).expect("Invalid move");
 
             //break;
             if play_again.trim() == "y" {
                 board = Board::new();
-                turn -= 1;
+                turn = 1;
             } else {
                 break;
             }
