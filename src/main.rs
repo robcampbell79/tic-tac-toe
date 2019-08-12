@@ -45,14 +45,15 @@ fn main() {
 
             io::stdin().read_line(&mut play_again).expect("Invalid move");
 
+            //break;
             if play_again.trim() == "y" {
-               let mut board = Board::new();
+                board = Board::new();
+                turn -= 1;
             } else {
                 break;
             }
-
-            //break;
         }
+
 
         println!("Where do you want to move?");
 
@@ -72,5 +73,7 @@ fn main() {
                 turn += 1;
             } 
         }
+
+        games_played += 1;
     }
 }
