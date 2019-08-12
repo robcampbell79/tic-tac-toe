@@ -8,59 +8,57 @@ impl Player {
         Player {marker: new_marker.to_string(), turn: new_turn}
     }
 
-    pub fn check_for_winner(arr1: &[String; 3], arr2: &[String; 3], arr3: &[String; 3]) -> bool {
-        let mut winner: bool = false;
-        if arr1[0] == "x" && arr1[1] == "x" && arr1[2] == "x" || arr1[0] == "o" && arr1[1] == "o" && arr1[2] == "o" {
-            winner = true;
-        } 
-        else if arr2[0] == "x" && arr2[1] == "x" && arr2[2] == "x" || arr2[0] == "o" && arr2[1] == "o" && arr2[2] == "o" {
-            winner = true;
-        }
-        else if arr3[0] == "x" && arr3[1] == "x" && arr3[2] == "x" || arr3[0] == "o" && arr3[1] == "o" && arr3[2] == "o" {
-            winner = true;
-        }
-        else if arr1[0] == "x" && arr2[0] == "x" && arr3[0] == "x" || arr1[0] == "o" && arr2[0] == "o" && arr3[0] == "o" {
-            winner = true;
-        }
-        else if arr1[1] == "x" && arr2[1] == "x" && arr3[1] == "x" || arr1[1] == "o" && arr2[1] == "o" && arr3[1] == "o" {
-            winner = true;
-        }
-        else if arr1[2] == "x" && arr2[2] == "x" && arr3[2] == "x" || arr1[2] == "o" && arr2[2] == "o" && arr3[2] == "o" {
-            winner = true;
-        }
-        else if arr1[0] == "x" && arr2[1] == "x" && arr3[2] == "x" || arr1[0] == "o" && arr2[1] == "o" && arr3[2] == "o" {
-            winner = true;
-        }
-        else if arr1[2] == "x" && arr2[1] == "x" && arr3[0] == "x" || arr1[2] == "o" && arr2[1] == "o" && arr3[0] == "o" {
-            winner = true;
-        }
-        else {
-            winner = false;
-        }
+    // pub fn check_for_winner(arr1: &[String; 3], arr2: &[String; 3], arr3: &[String; 3]) -> bool {
+    //     let mut winner: bool = false;
 
-        winner
-    }
+    //     for i in arr1.iter() {
+
+    //     }
+    //     if arr1[0] == "x" && arr1[1] == "x" && arr1[2] == "x" || arr1[0] == "o" && arr1[1] == "o" && arr1[2] == "o" {
+    //         winner = true;
+    //     } 
+    //     else if arr2[0] == "x" && arr2[1] == "x" && arr2[2] == "x" || arr2[0] == "o" && arr2[1] == "o" && arr2[2] == "o" {
+    //         winner = true;
+    //     }
+    //     else if arr3[0] == "x" && arr3[1] == "x" && arr3[2] == "x" || arr3[0] == "o" && arr3[1] == "o" && arr3[2] == "o" {
+    //         winner = true;
+    //     }
+    //     else if arr1[0] == "x" && arr2[0] == "x" && arr3[0] == "x" || arr1[0] == "o" && arr2[0] == "o" && arr3[0] == "o" {
+    //         winner = true;
+    //     }
+    //     else if arr1[1] == "x" && arr2[1] == "x" && arr3[1] == "x" || arr1[1] == "o" && arr2[1] == "o" && arr3[1] == "o" {
+    //         winner = true;
+    //     }
+    //     else if arr1[2] == "x" && arr2[2] == "x" && arr3[2] == "x" || arr1[2] == "o" && arr2[2] == "o" && arr3[2] == "o" {
+    //         winner = true;
+    //     }
+    //     else if arr1[0] == "x" && arr2[1] == "x" && arr3[2] == "x" || arr1[0] == "o" && arr2[1] == "o" && arr3[2] == "o" {
+    //         winner = true;
+    //     }
+    //     else if arr1[2] == "x" && arr2[1] == "x" && arr3[0] == "x" || arr1[2] == "o" && arr2[1] == "o" && arr3[0] == "o" {
+    //         winner = true;
+    //     }
+    //     else {
+    //         winner = false;
+    //     }
+
+    //     winner
+    // }
 }
 
 pub struct Board {
-    pub a: [String;3],
-    pub b: [String;3],
-    pub c: [String;3],
+    pub tiles: [[String;3]; 3],
 }
 
 impl Board {
     pub fn new() -> Board {
         Board {
-            a: ["#".to_string(), "#".to_string(), "#".to_string()],
-            b: ["#".to_string(), "#".to_string(), "#".to_string()],
-            c: ["#".to_string(), "#".to_string(), "#".to_string()],
+            tiles = [["*"; 3]; 3];
         }
     }
 
     pub fn show_board(&self) {
-        println!("{:?}", self.a);
-        println!("{:?}", self.b);
-        println!("{:?}", self.c);
+        println!("{:?}", self.tiles);
     }
 
 }
@@ -152,3 +150,37 @@ pub fn player_move(board: &mut Board, make_move: String, player: &Player) -> boo
 
     turn
 }
+
+pub fn check_for_winner(arr1: &[String; 3], arr2: &[String; 3], arr3: &[String; 3]) -> bool {
+        let mut winner: bool = false;
+
+        if arr1[0] == "x" && arr1[1] == "x" && arr1[2] == "x" || arr1[0] == "o" && arr1[1] == "o" && arr1[2] == "o" {
+            winner = true;
+        } 
+        else if arr2[0] == "x" && arr2[1] == "x" && arr2[2] == "x" || arr2[0] == "o" && arr2[1] == "o" && arr2[2] == "o" {
+            winner = true;
+        }
+        else if arr3[0] == "x" && arr3[1] == "x" && arr3[2] == "x" || arr3[0] == "o" && arr3[1] == "o" && arr3[2] == "o" {
+            winner = true;
+        }
+        else if arr1[0] == "x" && arr2[0] == "x" && arr3[0] == "x" || arr1[0] == "o" && arr2[0] == "o" && arr3[0] == "o" {
+            winner = true;
+        }
+        else if arr1[1] == "x" && arr2[1] == "x" && arr3[1] == "x" || arr1[1] == "o" && arr2[1] == "o" && arr3[1] == "o" {
+            winner = true;
+        }
+        else if arr1[2] == "x" && arr2[2] == "x" && arr3[2] == "x" || arr1[2] == "o" && arr2[2] == "o" && arr3[2] == "o" {
+            winner = true;
+        }
+        else if arr1[0] == "x" && arr2[1] == "x" && arr3[2] == "x" || arr1[0] == "o" && arr2[1] == "o" && arr3[2] == "o" {
+            winner = true;
+        }
+        else if arr1[2] == "x" && arr2[1] == "x" && arr3[0] == "x" || arr1[2] == "o" && arr2[1] == "o" && arr3[0] == "o" {
+            winner = true;
+        }
+        else {
+            winner = false;
+        }
+
+        winner
+    }
