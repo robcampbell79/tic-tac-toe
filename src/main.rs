@@ -3,6 +3,7 @@ use std::io;
 use tic_tac_toe::Player;
 use tic_tac_toe::Board;
 use tic_tac_toe::player_move;
+use tic_tac_toe::check_for_winner;
 
 
 fn main() {
@@ -31,7 +32,7 @@ fn main() {
 
     loop {
 
-        if Player::check_for_winner(&board.a, &board.b, &board.c) == true {
+        if check_for_winner(&board.a, &board.b, &board.c) == true {
             if turn % 2 == 0 {
                 println!("{} wins!", first);
             } else {
