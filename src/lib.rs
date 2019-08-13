@@ -53,12 +53,14 @@ pub struct Board {
 impl Board {
     pub fn new() -> Board {
         Board {
-            tiles = [["*"; 3]; 3];
+            tiles: [["*".to_string(); 3]; 3],
         }
     }
 
     pub fn show_board(&self) {
-        println!("{:?}", self.tiles);
+        println!("{:?}, {:?}, {:?}", self.tiles[0][0], self.tiles[0][1], self.tiles[0][2]);
+        println!("{:?}, {:?}, {:?}", self.tiles[1][0], self.tiles[1][1], self.tiles[1][2]);
+        println!("{:?}, {:?}, {:?}", self.tiles[2][0], self.tiles[2][1], self.tiles[2][2]);
     }
 
 }
@@ -71,25 +73,25 @@ pub fn player_move(board: &mut Board, make_move: String, player: &Player) -> boo
 
     if row_name == "a" {
         match row_num {
-            "1" => if board.a[0] == "x" || board.a[0] == "o" {
+            "1" => if board.tiles[0][0] == "x" || board.tiles[0][0] == "o" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
-                        board.a[0] = marker.to_string();
+                        board.tiles[0][0] = marker.to_string();
                         turn = true;
                     },
-            "2" => if board.a[1] == "x" || board.a[1] == "o" {
+            "2" => if board.tiles[0][1] == "x" || board.tiles[0][1] == "o" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
-                        board.a[1] = marker.to_string();
+                        board.tiles[0][1] = marker.to_string();
                         turn = true;
                     },
-            "3" => if board.a[2] == "x" || board.a[2] == "o" {
+            "3" => if board.tiles[0][2] == "x" || board.tiles[0][2] == "o" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
-                        board.a[2] = marker.to_string();
+                        board.tiles[0][2] = marker.to_string();
                         turn = true;
                     },
             (_) => println!("Invalid number."),
@@ -97,25 +99,25 @@ pub fn player_move(board: &mut Board, make_move: String, player: &Player) -> boo
     }
     else if row_name == "b" {
         match row_num {
-            "1" => if board.b[0] == "x" || board.b[0] == "o" {
+            "1" => if board.tiles[1][0] == "x" || board.tiles[1][0] == "o" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
-                        board.b[0] = marker.to_string();
+                        board.tiles[1][0] = marker.to_string();
                         turn = true;
                     },
-            "2" => if board.b[1] == "x" || board.b[1] == "o" {
+            "2" => if board.tiles[1][1] == "x" || board.tiles[1][1] == "o" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
-                        board.b[1] = marker.to_string();
+                        board.tiles[1][1] = marker.to_string();
                         turn = true;
                     },
-            "3" => if board.b[2] == "x" || board.b[2] == "o" {
+            "3" => if board.tiles[1][2] == "x" || board.tiles[1][2] == "o" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
-                        board.b[2] = marker.to_string();
+                        board.tiles[1][2] = marker.to_string();
                         turn = true;
                     },
             (_) => println!("Invalid number."),
@@ -123,25 +125,25 @@ pub fn player_move(board: &mut Board, make_move: String, player: &Player) -> boo
     }
     else {
         match row_num {
-            "1" => if board.c[0] == "x" || board.c[0] == "o" {
+            "1" => if board.tiles[2][0] == "x" || board.tiles[2][0] == "o" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
-                        board.c[0] = marker.to_string();
+                        board.tiles[2][0] = marker.to_string();
                         turn = true;
                     },
-            "2" => if board.c[1] == "x" || board.c[1] == "o" {
+            "2" => if board.tiles[2][1] == "x" || board.tiles[2][1] == "o" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
-                        board.c[1] = marker.to_string();
+                        board.tiles[2][1] = marker.to_string();
                         turn = true;
                     },
-            "3" => if board.c[2] == "x" || board.c[2] == "o" {
+            "3" => if board.tiles[2][2] == "x" || board.tiles[2][2] == "o" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
-                        board.c[2] = marker.to_string();
+                        board.tiles[2][2] = marker.to_string();
                         turn = true;
                     },
             (_) => println!("Invalid number."),
@@ -151,33 +153,33 @@ pub fn player_move(board: &mut Board, make_move: String, player: &Player) -> boo
     turn
 }
 
-pub fn check_for_winner(arr1: &[String; 3], arr2: &[String; 3], arr3: &[String; 3]) -> bool {
+pub fn check_for_winner(arr: &[[String; 3]; 3]) -> bool {
         let mut winner: bool = false;
 
-        if arr1[0] == "x" && arr1[1] == "x" && arr1[2] == "x" || arr1[0] == "o" && arr1[1] == "o" && arr1[2] == "o" {
+        if arr[0][0] == "x" && arr[0][1] == "x" && arr[0][2] == "x" || arr[0][0] == "o" && arr[0][1] == "o" && arr[0][2] == "o" {
             winner = true;
         } 
-        else if arr2[0] == "x" && arr2[1] == "x" && arr2[2] == "x" || arr2[0] == "o" && arr2[1] == "o" && arr2[2] == "o" {
+        else if arr[1][0] == "x" && arr[1][1] == "x" && arr[1][2] == "x" || arr[1][0] == "o" && arr[1][1] == "o" && arr[1][2] == "o" {
             winner = true;
         }
-        else if arr3[0] == "x" && arr3[1] == "x" && arr3[2] == "x" || arr3[0] == "o" && arr3[1] == "o" && arr3[2] == "o" {
+        else if arr[2][0] == "x" && arr[2][1] == "x" && arr[2][2] == "x" || arr[2][0] == "o" && arr[2][1] == "o" && arr[2][2] == "o" {
             winner = true;
         }
-        else if arr1[0] == "x" && arr2[0] == "x" && arr3[0] == "x" || arr1[0] == "o" && arr2[0] == "o" && arr3[0] == "o" {
-            winner = true;
-        }
-        else if arr1[1] == "x" && arr2[1] == "x" && arr3[1] == "x" || arr1[1] == "o" && arr2[1] == "o" && arr3[1] == "o" {
-            winner = true;
-        }
-        else if arr1[2] == "x" && arr2[2] == "x" && arr3[2] == "x" || arr1[2] == "o" && arr2[2] == "o" && arr3[2] == "o" {
-            winner = true;
-        }
-        else if arr1[0] == "x" && arr2[1] == "x" && arr3[2] == "x" || arr1[0] == "o" && arr2[1] == "o" && arr3[2] == "o" {
-            winner = true;
-        }
-        else if arr1[2] == "x" && arr2[1] == "x" && arr3[0] == "x" || arr1[2] == "o" && arr2[1] == "o" && arr3[0] == "o" {
-            winner = true;
-        }
+        // else if arr1[0] == "x" && arr2[0] == "x" && arr3[0] == "x" || arr1[0] == "o" && arr2[0] == "o" && arr3[0] == "o" {
+        //     winner = true;
+        // }
+        // else if arr1[1] == "x" && arr2[1] == "x" && arr3[1] == "x" || arr1[1] == "o" && arr2[1] == "o" && arr3[1] == "o" {
+        //     winner = true;
+        // }
+        // else if arr1[2] == "x" && arr2[2] == "x" && arr3[2] == "x" || arr1[2] == "o" && arr2[2] == "o" && arr3[2] == "o" {
+        //     winner = true;
+        // }
+        // else if arr1[0] == "x" && arr2[1] == "x" && arr3[2] == "x" || arr1[0] == "o" && arr2[1] == "o" && arr3[2] == "o" {
+        //     winner = true;
+        // }
+        // else if arr1[2] == "x" && arr2[1] == "x" && arr3[0] == "x" || arr1[2] == "o" && arr2[1] == "o" && arr3[0] == "o" {
+        //     winner = true;
+        // }
         else {
             winner = false;
         }
