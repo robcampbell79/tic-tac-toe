@@ -37,7 +37,7 @@ fn main() {
 
             board.show_board();
 
-            println!("Do you want to play again?");
+            println!("Do you want to play again? y/n");
 
             let mut play_again = String::new();
 
