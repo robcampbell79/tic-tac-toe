@@ -25,9 +25,9 @@ impl Board {
     }
 
     pub fn show_board(&self) {
-        println!("{:?}, {:?}, {:?}", self.tiles[0][0], self.tiles[0][1], self.tiles[0][2]);
-        println!("{:?}, {:?}, {:?}", self.tiles[1][0], self.tiles[1][1], self.tiles[1][2]);
-        println!("{:?}, {:?}, {:?}", self.tiles[2][0], self.tiles[2][1], self.tiles[2][2]);
+        println!("{:?} {:?} {:?}", self.tiles[0][0], self.tiles[0][1], self.tiles[0][2]);
+        println!("{:?} {:?} {:?}", self.tiles[1][0], self.tiles[1][1], self.tiles[1][2]);
+        println!("{:?} {:?} {:?}", self.tiles[2][0], self.tiles[2][1], self.tiles[2][2]);
     }
 
 }
