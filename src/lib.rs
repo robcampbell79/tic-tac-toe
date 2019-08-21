@@ -47,14 +47,18 @@ impl Player {
 }
 
 pub struct Board {
-    pub tiles: [[&'static str;3]; 3],
+    pub tiles: [Box<[String]>; 3],
 }
 
 impl Board {
     pub fn new() -> Board {
         let tile = "*";
         Board {
-            tiles: [[tile; 3]; 3],
+            tiles: [
+                Box::new(["*".to_string(), "*".to_string(), "*".to_string()]),
+                Box::new(["*".to_string(), "*".to_string(), "*".to_string()]),
+                Box::new(["*".to_string(), "*".to_string(), "*".to_string()])
+            ],
         }
     }
 
