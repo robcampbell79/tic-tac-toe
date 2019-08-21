@@ -32,7 +32,7 @@ fn main() {
 
     loop {
 
-        if check_for_winner(&board.a, &board.b, &board.c) == true {
+        if check_for_winner(&board.tiles) == true {
             if turn % 2 == 0 {
                 println!("{} wins!", first);
             } else {
