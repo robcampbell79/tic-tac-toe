@@ -40,21 +40,21 @@ pub fn player_move(board: &mut Board, make_move: String, player: &Player) -> boo
 
     if row_name == "a" {
         match row_num {
-            "1" => if board.tiles[0][0] == "x" || board.tiles[0][0] == "o" {
+            "1" => if board.tiles[0][0] != "*" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
                         board.tiles[0][0] = marker.to_string();
                         turn = true;
                     },
-            "2" => if board.tiles[0][1] == "x" || board.tiles[0][1] == "o" {
+            "2" => if board.tiles[0][1] != "*" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
                         board.tiles[0][1] = marker.to_string();
                         turn = true;
                     },
-            "3" => if board.tiles[0][2] == "x" || board.tiles[0][2] == "o" {
+            "3" => if board.tiles[0][2] != "*" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
@@ -66,21 +66,21 @@ pub fn player_move(board: &mut Board, make_move: String, player: &Player) -> boo
     }
     else if row_name == "b" {
         match row_num {
-            "1" => if board.tiles[1][0] == "x" || board.tiles[1][0] == "o" {
+            "1" => if board.tiles[1][0] != "*" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
                         board.tiles[1][0] = marker.to_string();
                         turn = true;
                     },
-            "2" => if board.tiles[1][1] == "x" || board.tiles[1][1] == "o" {
+            "2" => if board.tiles[1][1] != "*" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
                         board.tiles[1][1] = marker.to_string();
                         turn = true;
                     },
-            "3" => if board.tiles[1][2] == "x" || board.tiles[1][2] == "o" {
+            "3" => if board.tiles[1][2] != "*" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
@@ -92,21 +92,21 @@ pub fn player_move(board: &mut Board, make_move: String, player: &Player) -> boo
     }
     else {
         match row_num {
-            "1" => if board.tiles[2][0] == "x" || board.tiles[2][0] == "o" {
+            "1" => if board.tiles[2][0] != "*" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
                         board.tiles[2][0] = marker.to_string();
                         turn = true;
                     },
-            "2" => if board.tiles[2][1] == "x" || board.tiles[2][1] == "o" {
+            "2" => if board.tiles[2][1] != "*" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
                         board.tiles[2][1] = marker.to_string();
                         turn = true;
                     },
-            "3" => if board.tiles[2][2] == "x" || board.tiles[2][2] == "o" {
+            "3" => if board.tiles[2][2] != "*" {
                         println!("Try again, not empty");
                         turn = false;
                     } else {
