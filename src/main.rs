@@ -15,10 +15,6 @@ fn main() {
     println!("Let's play tic-tac-toe!");
 
     let mut turn: u32 = 1;
-    let mut marker: String;
-    let mut index_num: usize;
-    let mut games_played: u32 = 0;
-
     let first: String;
     let second: String;
 
@@ -74,7 +70,5 @@ fn main() {
                 turn += 1;
             } 
         }
-
-        games_played += 1;
     }
 }
