@@ -1,10 +1,10 @@
 pub struct Player {
-    pub marker: &'static str,
+    pub marker: String,
     pub turn: u32,
 }
 
 impl Player {
-    pub fn new<'a>(new_marker: &'static str, new_turn: u32) -> Player {
+    pub fn new<'a>(new_marker: &str, new_turn: u32) -> Player {
         Player {marker: new_marker.to_string(), turn: new_turn}
     }
 
@@ -158,7 +158,7 @@ pub fn player_move(board: &mut Board, make_move: String, player: &Player) -> boo
     turn
 }
 
-pub fn check_for_winner(arr: &[[String; 3]; 3]) -> bool {
+pub fn check_for_winner(arr: &[Box<[String]>; 3]) -> bool {
         let mut winner: bool = false;
 
         if arr[0][0] == "x" && arr[0][1] == "x" && arr[0][2] == "x" || arr[0][0] == "o" && arr[0][1] == "o" && arr[0][2] == "o" {
@@ -170,12 +170,12 @@ pub fn check_for_winner(arr: &[[String; 3]; 3]) -> bool {
         else if arr[2][0] == "x" && arr[2][1] == "x" && arr[2][2] == "x" || arr[2][0] == "o" && arr[2][1] == "o" && arr[2][2] == "o" {
             winner = true;
         }
-        // else if arr1[0] == "x" && arr2[0] == "x" && arr3[0] == "x" || arr1[0] == "o" && arr2[0] == "o" && arr3[0] == "o" {
-        //     winner = true;
-        // }
-        // else if arr1[1] == "x" && arr2[1] == "x" && arr3[1] == "x" || arr1[1] == "o" && arr2[1] == "o" && arr3[1] == "o" {
-        //     winner = true;
-        // }
+        else if arr[0][0] == "x" && arr[1][1] == "x" && arr[2][2] == "x" || arr[0][0] == "o" && arr[1][1] == "o" && arr[2][2] == "o" {
+            winner = true;
+        }
+        else if arr[0][2] == "x" && arr[1][1] == "x" && arr[2][1] == "x" || arr[0][2] == "o" && arr[1][1] == "o" && arr[2][1] == "o" {
+            winner = true;
+        }
         // else if arr1[2] == "x" && arr2[2] == "x" && arr3[2] == "x" || arr1[2] == "o" && arr2[2] == "o" && arr3[2] == "o" {
         //     winner = true;
         // }
