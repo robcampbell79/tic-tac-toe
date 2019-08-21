@@ -138,15 +138,15 @@ pub fn check_for_winner(arr: &[Box<[String]>; 3]) -> bool {
         else if arr[0][2] == "x" && arr[1][1] == "x" && arr[2][0] == "x" || arr[0][2] == "o" && arr[1][1] == "o" && arr[2][0] == "o" {
             winner = true;
         }
-        // else if arr1[2] == "x" && arr2[2] == "x" && arr3[2] == "x" || arr1[2] == "o" && arr2[2] == "o" && arr3[2] == "o" {
-        //     winner = true;
-        // }
-        // else if arr1[0] == "x" && arr2[1] == "x" && arr3[2] == "x" || arr1[0] == "o" && arr2[1] == "o" && arr3[2] == "o" {
-        //     winner = true;
-        // }
-        // else if arr1[2] == "x" && arr2[1] == "x" && arr3[0] == "x" || arr1[2] == "o" && arr2[1] == "o" && arr3[0] == "o" {
-        //     winner = true;
-        // }
+        else if arr[0][0] == "x" && arr[1][0] == "x" && arr[2][0] == "x" || arr[0][0] == "o" && arr[1][0] == "o" && arr[2][0] == "o" {
+            winner = true;
+        }
+        else if arr[0][1] == "x" && arr[1][1] == "x" && arr[2][1] == "x" || arr[0][1] == "o" && arr[1][1] == "o" && arr[2][1] == "o" {
+            winner = true;
+        }
+        else if arr[0][2] == "x" && arr[1][2] == "x" && arr[2][2] == "x" || arr[0][2] == "o" && arr[1][2] == "o" && arr[2][2] == "o" {
+            winner = true;
+        }
         else {
             winner = false;
         }
