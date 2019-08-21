@@ -120,31 +120,33 @@ pub fn player_move(board: &mut Board, make_move: String, player: &Player) -> boo
     turn
 }
 
-pub fn check_for_winner(arr: &[Box<[String]>; 3]) -> bool {
+pub fn check_for_winner(arr: &[Box<[String]>; 3], player1: &Player, player2: &Player) -> bool {
         let winner: bool;
+        let marker1 = &player1.marker;
+        let marker2 = &player2.marker;
 
-        if arr[0][0] == "x" && arr[0][1] == "x" && arr[0][2] == "x" || arr[0][0] == "o" && arr[0][1] == "o" && arr[0][2] == "o" {
+        if arr[0][0] == marker1.to_string() && arr[0][1] == marker1.to_string() && arr[0][2] == marker1.to_string() || arr[0][0] == marker2.to_string() && arr[0][1] == marker2.to_string() && arr[0][2] == marker2.to_string() {
             winner = true;
         } 
-        else if arr[1][0] == "x" && arr[1][1] == "x" && arr[1][2] == "x" || arr[1][0] == "o" && arr[1][1] == "o" && arr[1][2] == "o" {
+        else if arr[1][0] == marker1.to_string() && arr[1][1] == marker1.to_string() && arr[1][2] == marker1.to_string() || arr[1][0] == marker2.to_string() && arr[1][1] == marker2.to_string() && arr[1][2] == marker2.to_string() {
             winner = true;
         }
-        else if arr[2][0] == "x" && arr[2][1] == "x" && arr[2][2] == "x" || arr[2][0] == "o" && arr[2][1] == "o" && arr[2][2] == "o" {
+        else if arr[2][0] == marker1.to_string() && arr[2][1] == marker1.to_string() && arr[2][2] == marker1.to_string() || arr[2][0] == marker2.to_string() && arr[2][1] == marker2.to_string() && arr[2][2] == marker2.to_string() {
             winner = true;
         }
-        else if arr[0][0] == "x" && arr[1][1] == "x" && arr[2][2] == "x" || arr[0][0] == "o" && arr[1][1] == "o" && arr[2][2] == "o" {
+        else if arr[0][0] == marker1.to_string() && arr[1][1] == marker1.to_string() && arr[2][2] == marker1.to_string() || arr[0][0] == marker2.to_string() && arr[1][1] == marker2.to_string() && arr[2][2] == marker2.to_string() {
             winner = true;
         }
-        else if arr[0][2] == "x" && arr[1][1] == "x" && arr[2][0] == "x" || arr[0][2] == "o" && arr[1][1] == "o" && arr[2][0] == "o" {
+        else if arr[0][2] == marker1.to_string() && arr[1][1] == marker1.to_string() && arr[2][0] == marker1.to_string() || arr[0][2] == marker2.to_string() && arr[1][1] == marker2.to_string() && arr[2][0] == marker2.to_string() {
             winner = true;
         }
-        else if arr[0][0] == "x" && arr[1][0] == "x" && arr[2][0] == "x" || arr[0][0] == "o" && arr[1][0] == "o" && arr[2][0] == "o" {
+        else if arr[0][0] == marker1.to_string() && arr[1][0] == marker1.to_string() && arr[2][0] == marker1.to_string() || arr[0][0] == marker2.to_string() && arr[1][0] == marker2.to_string() && arr[2][0] == marker2.to_string() {
             winner = true;
         }
-        else if arr[0][1] == "x" && arr[1][1] == "x" && arr[2][1] == "x" || arr[0][1] == "o" && arr[1][1] == "o" && arr[2][1] == "o" {
+        else if arr[0][1] == marker1.to_string() && arr[1][1] == marker1.to_string() && arr[2][1] == marker1.to_string() || arr[0][1] == marker2.to_string() && arr[1][1] == marker2.to_string() && arr[2][1] == marker2.to_string() {
             winner = true;
         }
-        else if arr[0][2] == "x" && arr[1][2] == "x" && arr[2][2] == "x" || arr[0][2] == "o" && arr[1][2] == "o" && arr[2][2] == "o" {
+        else if arr[0][2] == marker1.to_string() && arr[1][2] == marker1.to_string() && arr[2][2] == marker1.to_string() || arr[0][2] == marker2.to_string() && arr[1][2] == marker2.to_string() && arr[2][2] == marker2.to_string() {
             winner = true;
         }
         else {
