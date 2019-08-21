@@ -15,7 +15,6 @@ pub struct Board {
 
 impl Board {
     pub fn new() -> Board {
-        let tile = "*";
         Board {
             tiles: [
                 Box::new(["*".to_string(), "*".to_string(), "*".to_string()]),
@@ -34,9 +33,9 @@ impl Board {
 }
 
 pub fn player_move(board: &mut Board, make_move: String, player: &Player) -> bool {
-    let mut row_name = make_move[0..1].trim();
-    let mut row_num = make_move[1..2].trim();
-    let mut marker = &player.marker;
+    let row_name = make_move[0..1].trim();
+    let row_num = make_move[1..2].trim();
+    let marker = &player.marker;
     let mut turn = false;
 
     if row_name == "a" {
@@ -62,7 +61,7 @@ pub fn player_move(board: &mut Board, make_move: String, player: &Player) -> boo
                         board.tiles[0][2] = marker.to_string();
                         turn = true;
                     },
-            (_) => println!("Invalid number."),
+            _ => println!("Invalid number."),
         }
     }
     else if row_name == "b" {
@@ -88,7 +87,7 @@ pub fn player_move(board: &mut Board, make_move: String, player: &Player) -> boo
                         board.tiles[1][2] = marker.to_string();
                         turn = true;
                     },
-            (_) => println!("Invalid number."),
+            _ => println!("Invalid number."),
         }
     }
     else {
@@ -114,7 +113,7 @@ pub fn player_move(board: &mut Board, make_move: String, player: &Player) -> boo
                         board.tiles[2][2] = marker.to_string();
                         turn = true;
                     },
-            (_) => println!("Invalid number."),
+            _ => println!("Invalid number."),
         }
     }
 
@@ -122,7 +121,7 @@ pub fn player_move(board: &mut Board, make_move: String, player: &Player) -> boo
 }
 
 pub fn check_for_winner(arr: &[Box<[String]>; 3]) -> bool {
-        let mut winner: bool = false;
+        let winner: bool;
 
         if arr[0][0] == "x" && arr[0][1] == "x" && arr[0][2] == "x" || arr[0][0] == "o" && arr[0][1] == "o" && arr[0][2] == "o" {
             winner = true;
