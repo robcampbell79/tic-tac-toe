@@ -8,11 +8,21 @@ use tic_tac_toe::check_for_winner;
 
 fn main() {
 
-    let player1 = Player::new("x", 1);
-    let player2 = Player::new("o", 2);
+    let mut marker1 = String::new();
+    let mut marker2 = String::new();
     let mut board = Board::new();
     
     println!("Let's play tic-tac-toe!");
+
+    println!("Please enter a character that the first player will use to mark their place on the board.");
+
+    io::stdin().read_line(&mut marker1).expect("Invalid character");
+    let player1 = Player::new(marker1.trim(), 1);
+
+    println!("Please enter a character that the second player will use to mark their place on the board.");
+
+    io::stdin().read_line(&mut marker2).expect("Invalid character");
+    let player2 = Player::new(marker2.trim(), 2);
 
     let mut turn: u32 = 1;
     let first: String;
