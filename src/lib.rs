@@ -4,7 +4,7 @@ pub struct Player {
 }
 
 impl Player {
-    pub fn new<'a>(new_marker: &str, new_turn: u32) -> Player {
+    pub fn new(new_marker: &str, new_turn: u32) -> Player {
         Player {marker: new_marker.to_string(), turn: new_turn}
     }
 }
