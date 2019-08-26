@@ -11,6 +11,8 @@ fn main() {
     let mut board = Board::new();
     let player1: Player;
     let player2: Player;
+    let mut marker1: String;
+    let mut marker2: String;
     
     println!("Let's play tic-tac-toe!");
 
@@ -18,7 +20,7 @@ fn main() {
 
     loop {
 
-        let mut marker1 = String::new();
+        marker1 = String::new();
 
         io::stdin().read_line(&mut marker1).expect("Invalid character");
 
@@ -35,11 +37,12 @@ fn main() {
 
     loop {
 
-        let mut marker2 = String::new();
+        marker2 = String::new();
 
         io::stdin().read_line(&mut marker2).expect("Invalid character");
 
-        if marker2.trim() != "*" {
+        if marker2.trim() != "*" && marker2.trim() != marker1.trim() {
+            println!("marker1 {}", marker1);
             player2 = Player::new(marker2.trim(), 2);
             break;
         } else {
