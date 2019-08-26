@@ -48,7 +48,12 @@ pub fn player_move(board: &mut Board, make_move: String, player: &Player) -> boo
         Err(_) => return false,
     };
 
-    column -= 1;
+    if column < 4 && column > 0 {
+        column -= 1;
+    } else {
+        return false;
+    }
+
 
     let marker = &player.marker;
     let turn: bool;
