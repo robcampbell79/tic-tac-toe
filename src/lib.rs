@@ -34,86 +34,41 @@ impl Board {
 
 pub fn player_move(board: &mut Board, make_move: String, player: &Player) -> bool {
     let row_name = make_move[0..1].trim();
-    let row_num = make_move[1..2].trim();
+    let mut row_num: usize = match make_move[1..2].trim().parse() {
+        Ok(usize) => usize,
+        Err(_) => 0,
+    };
+
+    row_num -= 1;
+
     let marker = &player.marker;
-    let mut turn = false;
+    let turn: bool;
 
     if row_name == "a" {
-        match row_num {
-            "1" => if board.tiles[0][0] != "*" {
-                        println!("Try again, not empty");
-                        turn = false;
-                    } else {
-                        board.tiles[0][0] = marker.to_string();
-                        turn = true;
-                    },
-            "2" => if board.tiles[0][1] != "*" {
-                        println!("Try again, not empty");
-                        turn = false;
-                    } else {
-                        board.tiles[0][1] = marker.to_string();
-                        turn = true;
-                    },
-            "3" => if board.tiles[0][2] != "*" {
-                        println!("Try again, not empty");
-                        turn = false;
-                    } else {
-                        board.tiles[0][2] = marker.to_string();
-                        turn = true;
-                    },
-            _ => println!("Invalid number."),
+        if board.tiles[0][row_num] != "*" {
+            println!("Try again, not empty");
+            turn = false;
+        } else {
+            board.tiles[0][row_num] = marker.to_string();
+            turn = true;
         }
     }
     else if row_name == "b" {
-        match row_num {
-            "1" => if board.tiles[1][0] != "*" {
-                        println!("Try again, not empty");
-                        turn = false;
-                    } else {
-                        board.tiles[1][0] = marker.to_string();
-                        turn = true;
-                    },
-            "2" => if board.tiles[1][1] != "*" {
-                        println!("Try again, not empty");
-                        turn = false;
-                    } else {
-                        board.tiles[1][1] = marker.to_string();
-                        turn = true;
-                    },
-            "3" => if board.tiles[1][2] != "*" {
-                        println!("Try again, not empty");
-                        turn = false;
-                    } else {
-                        board.tiles[1][2] = marker.to_string();
-                        turn = true;
-                    },
-            _ => println!("Invalid number."),
+        if board.tiles[1][row_num] != "*" {
+            println!("Try again, not empty");
+            turn = false;
+        } else {
+            board.tiles[1][row_num] = marker.to_string();
+            turn = true;
         }
     }
     else {
-        match row_num {
-            "1" => if board.tiles[2][0] != "*" {
-                        println!("Try again, not empty");
-                        turn = false;
-                    } else {
-                        board.tiles[2][0] = marker.to_string();
-                        turn = true;
-                    },
-            "2" => if board.tiles[2][1] != "*" {
-                        println!("Try again, not empty");
-                        turn = false;
-                    } else {
-                        board.tiles[2][1] = marker.to_string();
-                        turn = true;
-                    },
-            "3" => if board.tiles[2][2] != "*" {
-                        println!("Try again, not empty");
-                        turn = false;
-                    } else {
-                        board.tiles[2][2] = marker.to_string();
-                        turn = true;
-                    },
-            _ => println!("Invalid number."),
+        if board.tiles[2][row_num] != "*" {
+            println!("Try again, not empty");
+            turn = false;
+        } else {
+            board.tiles[2][row_num] = marker.to_string();
+            turn = true;
         }
     }
 
