@@ -8,21 +8,45 @@ use tic_tac_toe::check_for_winner;
 
 fn main() {
 
-    let mut marker1 = String::new();
-    let mut marker2 = String::new();
     let mut board = Board::new();
+    let player1: Player;
+    let player2: Player;
     
     println!("Let's play tic-tac-toe!");
 
     println!("Please enter a character that the first player will use to mark their place on the board.");
 
-    io::stdin().read_line(&mut marker1).expect("Invalid character");
-    let player1 = Player::new(marker1.trim(), 1);
+    loop {
+
+        let mut marker1 = String::new();
+
+        io::stdin().read_line(&mut marker1).expect("Invalid character");
+
+        if marker1.trim() != "*" {
+            player1 = Player::new(marker1.trim(), 1);
+            break;
+        } else {
+            println!("You can not use that character, please select another.");
+            continue;
+        }
+    }
 
     println!("Please enter a character that the second player will use to mark their place on the board.");
 
-    io::stdin().read_line(&mut marker2).expect("Invalid character");
-    let player2 = Player::new(marker2.trim(), 2);
+    loop {
+
+        let mut marker2 = String::new();
+
+        io::stdin().read_line(&mut marker2).expect("Invalid character");
+
+        if marker2.trim() != "*" {
+            player2 = Player::new(marker2.trim(), 2);
+            break;
+        } else {
+            println!("You can not use that character, please select another.");
+            continue;
+        }
+    }
 
     let mut turn: u32 = 1;
     let first: String;
@@ -56,8 +80,10 @@ fn main() {
             if play_again.trim() == "y" {
                 board = Board::new();
                 turn = 1;
-            } else {
+            } else if play_again.trim() == "n" {
                 break;
+            } else {
+                println!("Invalid input");
             }
         }
 
